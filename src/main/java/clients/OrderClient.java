@@ -1,5 +1,6 @@
 package clients;
 
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import models.order.Order;
@@ -15,6 +16,7 @@ public class OrderClient {
         RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru";
     }
 
+    @Step("Send POST request to " + API_V1_ORDER)
     public Response createOrder(Order order) {
         return given()
                 .header("Content-type", "application/json")
@@ -24,6 +26,7 @@ public class OrderClient {
                 .post(API_V1_ORDER);
     }
 
+    @Step("Send PUT request to " + API_V1_CANCEL_ORDER)
     public Response cancelOrder(int track) {
         return given()
                 .header("Content-type", "application/json")
@@ -33,6 +36,7 @@ public class OrderClient {
                 .put(API_V1_CANCEL_ORDER);
     }
 
+    @Step("Send GET request to " + API_V1_ORDER)
     public Response getOrderList() {
         return given()
                 .header("Content-type", "application/json")

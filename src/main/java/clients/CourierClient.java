@@ -1,5 +1,6 @@
 package clients;
 
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import models.courier.Courier;
@@ -15,6 +16,7 @@ public class CourierClient {
         RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru";
     }
 
+    @Step("Send POST request to " + API_V1_COURIER)
     public Response create(Courier courier) {
         return given()
                 .header("Content-type", "application/json")
@@ -24,6 +26,7 @@ public class CourierClient {
                 .post(API_V1_COURIER);
     }
 
+    @Step("Send DELETE request to " + API_V1_COURIER)
     public Response delete(int id) {
         return given()
                 .header("Content-type", "application/json")
@@ -31,6 +34,7 @@ public class CourierClient {
                 .delete(API_V1_COURIER + id);
     }
 
+    @Step("Send POST request to " + API_V1_COURIER_LOGIN)
     public Response login(CourierCreds creds) {
         return given()
                 .header("Content-type", "application/json")
@@ -40,6 +44,7 @@ public class CourierClient {
                 .post(API_V1_COURIER_LOGIN);
     }
 
+    @Step("Send POST request to " + API_V1_COURIER_LOGIN)
     public Response login(String json) {
         return given()
                 .header("Content-type", "application/json")
